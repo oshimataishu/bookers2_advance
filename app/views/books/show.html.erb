@@ -1,0 +1,30 @@
+<div class="text-success">
+  <%= flash[:notice] %>
+</div>
+
+<%= render 'infocreate', book: @new_book %>
+
+
+<h2>Book detail</h2>
+
+    <h4>Title</h4>
+    <%= link_to @book.title, book_path(@book.id) %>
+
+    <h4>Opinion</h4>
+    <%= @book.body %>
+
+    <h4>投稿ユーザー画像</h4>
+    <%= link_to user_path(@book.user.id) do %>
+      <%= image_tag @book.user.get_profile_image(100,100) %>
+    <% end %>
+
+    <%= link_to @book.user.name, user_path(@book.user.id) %>
+
+    <h4>投稿日時</h4>
+    <%= @book.created_at.strftime('%Y/%m/%d') %>
+
+    <br>
+    <% if @book.user.id == current_user.id %>
+      <%= link_to "Edit", edit_book_path(@book.id) %>
+      <%= link_to "Destroy", book_path(@book.id), method: :delete %>
+    <% end %>
