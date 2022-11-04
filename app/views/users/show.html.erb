@@ -12,6 +12,11 @@
 <h2>過去の投稿一覧</h2>
 <div>
   <% @books.each do |book| %>
+    <h4>ユーザー画像</h4>
+    <%= link_to user_path(book.user.id) do %>
+      <%= image_tag book.user.get_profile_image(100,100) %>
+    <% end %>
+    
     <h4>Title</h4><%= link_to book.title, book_path(book.id) %>
     <h4>Opinion</h4><%= book.body %>
     <h4>投稿日時</h4><%= book.created_at.strftime('%Y/%m/%d') %>

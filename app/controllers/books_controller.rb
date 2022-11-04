@@ -20,6 +20,11 @@ class BooksController < ApplicationController
   
   def edit
     @book = Book.find(params[:id])
+    @user = @book.user
+    if @user == current_user
+    else
+      redirect_to books_path
+    end
   end
   
   def update
@@ -40,6 +45,11 @@ class BooksController < ApplicationController
   
   def destroy
     @book = Book.find(params[:id])
+    @user = @book.user
+    if @user == current_user
+    else
+      redirect_to books_path
+    end
     @book.destroy
     flash[:notice] = "削除にsuccessfullyしました。"
     redirect_to books_path
