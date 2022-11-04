@@ -2,8 +2,11 @@
   <%= flash[:notice] %>
 </div>
 
-<%= render 'infocreate', book: @new_book %>
-
+<% if @user.id == current_user.id %>
+  <%= render 'infocreate', book: @new_book %>
+<% else %>
+　<%= render 'otherinfo', book: @new_book, user: @user %>
+<% end %>
 
 <h2>Book detail</h2>
 

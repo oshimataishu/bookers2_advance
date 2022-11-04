@@ -34,8 +34,8 @@ class BooksController < ApplicationController
 
   def show
     @new_book = Book.new
-    @user = User.find(params[:id])
     @book = Book.find(params[:id])
+    @user = @book.user
   end
   
   def destroy
