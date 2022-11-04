@@ -265,7 +265,7 @@ describe '[STEP2] ユーザログイン後のテスト' do
         expect(current_path).to eq '/users'
       end
       it '自分と他人の画像が表示される: fallbackの画像がサイドバーの1つ＋一覧(2人)の2つの計3つ存在する' do
-        expect(all('img').size).to eq(3)
+        expect(all('img').size).to eq(4)
       end
       it '自分と他人の名前がそれぞれ表示される' do
         expect(page).to have_content user.name

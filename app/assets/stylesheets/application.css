@@ -4,6 +4,8 @@
    box-sizing: border-box;
 }
 
+
+
 .flash-notifications{
   font-weight: bold;
   color: white;
@@ -12,10 +14,6 @@
 
 #notice{
    background-color: #ADD8E6;
-}
-
-.a{
-  display: inline;
 }
 
 .alert{
