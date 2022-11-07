@@ -23,7 +23,7 @@
             <td></td>
             <td>Title</td>
             <td>Opinion</td>
-            <td colspan="3"></td>
+            <td colspan="6"></td>
           </tr>
         </thead>
         
@@ -41,6 +41,20 @@
             <td><%= book.body %></td>
             <td><%= link_to "Edit", edit_book_path(book.id), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to "Destroy", book_path(book.id), method: :delete, data_confirm: "本当に消しますか？", class: "btn btn-sm btn-danger" %></td>
+            <td>
+              <td>
+              <% if book.favorited_by?(current_user) %>
+                <%= link_to book_favorites_path(book.id), method: :delete do %>
+                <i class="fas fa-heart"></i><%= book.favorites.count %>
+                <% end %>
+              <% else %>
+                <%= link_to book_favorites_path(book.id), method: :post do %>
+                <i class="fa-regular fa-heart"></i><%= book.favorites.count %>
+                <% end %>
+              <% end %>
+            </td>
+            </td>
+            <td><td><p>コメント数: <%= book.book_comments.count %></p></td></td>
           </tr>
           <% end %>
         </tbody>
