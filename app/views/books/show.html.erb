@@ -70,14 +70,15 @@
             <% end %>
           </tr>
           <% end %>
+          <tr>
            <%= form_with model: [@book, @book_comment] do |f| %>
-            <tr>
+
               <td colspan="6">
              <%= f.text_area :comment, cols: '40', rows: '5', placeholder: "コメントをここに" %>
              <%= f.submit "送信" %>
              </td>
-            </tr>
            <% end %>
+           </tr>
         </tbody>
 
       </table>
