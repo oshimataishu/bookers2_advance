@@ -1,0 +1,2 @@
+$('#comments_count').html('<%= j(render 'layouts/comments_count', book: @book) %>');
+$('#book_comment_field').html('<%= j(render 'layouts/book_comment_field', book: @book, book_comment: @new_comment) %>');

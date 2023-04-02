@@ -33,52 +33,18 @@
               <td><%= link_to "Destroy", book_path(@book.id), method: :delete, data_confirm: "本当に消しますか？", class: "btn btn-sm btn-danger" %></td>
             <% end %>
 
-            <td>
-              <% if @book.favorited_by?(current_user) %>
-                <p　class="like">
-                <%= link_to book_favorites_path(@book.id), method: :delete do %>
-                <i class="fas fa-heart"></i><%= @book.favorites.count %>
-                <% end %>
-                </p>
-              <% else %>
-                <p>
-                <%= link_to book_favorites_path(@book.id), method: :post do %>
-                <i class="fa-regular fa-heart"></i><%= @book.favorites.count %>
-                <% end %>
-                </p>
-              </td>
-              <% end %>
+            <td id="favorite_buttons_<%= @book.id %>">
+              <%= render 'layouts/favorite_btn', book: @book %>
             </td>
 
-            <td><p>コメント数: <%= @book.book_comments.count %></p></td>
+            <td id="comments_count">
+              <%= render 'layouts/comments_count', book: @book %>
+            </td>
           </tr>
         </tbody>
 
-        <tbody>
-          <% @book.book_comments.each do |book_comment| %>
-          <tr>
-            <td>
-              <%= link_to user_path(book_comment.user_id) do %>
-                <%= image_tag book_comment.user.get_profile_image(80,80) %>
-                <br>
-                <%= link_to book_comment.user.name, user_path(book_comment.user_id) %>
-              <% end %>
-            </td>
-            <td><%= book_comment.comment %></td>
-            <% if book_comment.user_id == current_user.id %>
-              <td><%= link_to "Destroy", book_book_comment_path(book_comment.book_id, book_comment), method: :delete, data_confirm: "本当に消しますか？", class: "btn btn-sm btn-danger" %></td>
-            <% end %>
-          </tr>
-          <% end %>
-          <tr>
-           <%= form_with model: [@book, @book_comment] do |f| %>
-
-              <td colspan="6">
-             <%= f.text_area :comment, cols: '40', rows: '5', placeholder: "コメントをここに" %>
-             <%= f.submit "送信" %>
-             </td>
-           <% end %>
-           </tr>
+        <tbody id="book_comment_field">
+          <%= render 'layouts/book_comment_field', book: @book, book_comment: @new_comment %>
         </tbody>
 
       </table>

@@ -1,0 +1,30 @@
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h2>フォロワー</h2>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>image</th>
+              <th>name</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @followers.each do |follower| %>
+              <tr>
+                <td><%= image_tag follower.get_profile_image(50,50) %></td>
+                <td><%= follower.name %></td>
+                <td>フォロー数: <%= follower.followings.count %></td>
+                <td>フォロワー数: <%= follower.followers.count %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</main>
