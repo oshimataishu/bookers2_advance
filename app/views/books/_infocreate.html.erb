@@ -4,21 +4,21 @@
     <tbody>
       <tr></tr>
       <tr>
-        <th>name</th>
+        <th>Name</th>
         <th><%= current_user.name %></th>
       </tr>
       <tr>
-        <th>introduction</th>
+        <th>Introduction</th>
         <th><%= current_user.introduction %></th>
       </tr>
       <tr>
-        <th>follows</th>
+        <th>Follows</th>
         <th>
           <%= link_to current_user.followings.count, user_followings_path(current_user.id) %>
         </th>
       </tr>
       <tr>
-        <th>followers</th>
+        <th>Followers</th>
         <th>
           <%= link_to current_user.followers.count, user_followers_path(current_user.id) %>
         </th>

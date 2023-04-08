@@ -1,19 +1,21 @@
 class BooksController < ApplicationController
 
   def index
+    to = Time.current.at_end_of_day
+    from = (to - 6.day).at_beginning_of_day
+    @books = Book.includes(:favorites).sort_by{|x| x.favorites.where(created_at: from...to).size}.reverse
     @current_user = current_user
-    @book = Book.new
-    @books = Book.all
+    @new_book = Book.new
     @book_comments = BookComment.all
   end
 
   def create
-    @book = Book.new(book_params)
-    @book.user_id = current_user.id
-    @book.user_name = current_user.name
-    if @book.save
+    @new_book = Book.new(book_params)
+    @new_book.user_id = current_user.id
+    @new_book.user_name = current_user.name
+    if @new_book.save
       flash[:notice] = "successfully created"
-      redirect_to book_path(@book.id)
+      redirect_to book_path(@new_book.id)
     else
       @books = Book.all
       render :index

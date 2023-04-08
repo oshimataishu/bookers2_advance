@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Bookers2</title>
-    
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -10,63 +10,63 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  
-    
+
+
   <body class="d-flex flex-column vh-100">
-    
+
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
           <a class="navbar-brand" href="/">
             <span>Bookers</span>
           </a>
-          
+
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expand="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          
+
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
               <li>
                 <%= link_to user_path(current_user.id), class: "nav-link text-light" do %>
-                  <i class="fas fa-home"></i> Home 
+                  <i class="fas fa-home"></i> Home
                 <% end %>
               </li>
               <li>
                 <a class="nav-link text-light" href="/users">
-                  <i class="fas fa-users"></i> Users 
+                  <i class="fas fa-users"></i> Users
                 </a>
               </li>
               <li>
                 <a class="nav-link text-light" href="/books">
-                  <i class="fas fa-book-open"></i> Books 
+                  <i class="fas fa-book-open"></i> Books
                 </a>
               </li>
               <li>
                 <%= link_to destroy_user_session_path, class: "nav-link text-light", method: :delete do %>
-                  <i class="fas fa-sign-out-alt"></i> logout 
+                  <i class="fas fa-sign-out-alt"></i> Log out
                 <% end %>
               </li>
               <% else %>
               <li>
                 <a class="nav-link text-light" href="/">
-                  <i class="fas fa-home"></i> Home 
+                  <i class="fas fa-home"></i> Home
                 </a>
               </li>
               <li>
                <a class="nav-link text-light" href= "/home/about" >
-                  <i class="fas fa-link"></i> About 
+                  <i class="fas fa-link"></i> About
                 </a>
               </li>
               <li>
                 <a class="nav-link text-light" href="/users/sign_up">
-                  <i class="fas fa-user-plus"></i> sign up 
+                  <i class="fas fa-user-plus"></i> Sign up
                 </a>
               </li>
               <li>
                 <a class="nav-link text-light" href="/users/sign_in">
-                  <i class="fas fa-sign-in-alt"></i> login 
+                  <i class="fas fa-sign-in-alt"></i> Log in
                 </a>
               </li>
               <% end %>
@@ -75,18 +75,19 @@
          </div>
       </nav>
     </header>
-    
-    <%= yield %>
-    
+    <main class="mt-4">
+      <%= yield %>
+    </main>
+
     <footer>
       <div class="container mt-5">
         <div class="row">
           <div class="mx-auto">
-            <p>CopyRight Infratop.inc</p>
+            <p>CopyRight Taishu.inc</p>
           </div>
         </div>
       </div>
     </footer>
-    
+
   </body>
 </html>
