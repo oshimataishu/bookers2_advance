@@ -9,7 +9,7 @@
 
     <div class="col-md-3">
       <% if @user.id == current_user.id %>
-        <%= render '/books/infocreate', book: @new_book %>
+        <%= render '/books/infocreate', book: @new_book, user: current_user %>
       <% else %>
         <%= render '/books/otherinfo', book: @new_book, user: @user %>
       <% end %>
