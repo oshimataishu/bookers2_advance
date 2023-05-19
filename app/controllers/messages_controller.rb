@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
     @new_message = current_user.messages.new(message_params)
     @room = @new_message.room
     @messages = @room.messages
-    render :validater unless @chat.save
+    render :validater unless @new_message.save
   end
 
   private
