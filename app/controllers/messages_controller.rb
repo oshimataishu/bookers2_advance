@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  before_action :reject_non_related, only: [:show]
+
   def show
     @user = User.find(params[:id])
     room_ids = current_user.user_rooms.pluck(:room_id)
@@ -21,6 +23,13 @@ class MessagesController < ApplicationController
     @room = @new_message.room
     @messages = @room.messages
     render :validater unless @new_message.save
+  end
+
+  def reject_non_related
+    @user = User.find(params[:id])
+    unless @user.following?(current_user) && current_user.following?(@user)
+      redirect_to users_path
+    end
   end
 
   private
