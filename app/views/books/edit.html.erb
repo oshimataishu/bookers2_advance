@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="con-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      
+
       <% if @book.errors.any? %>
         <%= @book.errors.count %>件のerrorが発生しました
         <ul>
@@ -10,28 +10,27 @@
         <% end %>
         </ul>
       <% end %>
-      
+
       <h1>Editing Book</h1>
-      
+
       <%= form_with model: @book do |f| %>
-      
+
         <p class="form_text"><label for="inputTitle">Title</label></p>
         <%= f.text_field :title, autofocus:true, id:"inputTitle", placeholder:"名前" %>
-        
+
         <p class="form_text"><label for="inputBody">Opinion</label></p>
         <%= f.text_area :body, autofocus:true, id:"inputBody", placeholder:"感想" %>
-        
+
         <div class="action">
          <%= f.submit " Update Book " %>
         </div>
-        
-      <% end %>
-      
-      <div class="a"><%= link_to "Show", book_path(@book.id) %></div>
-       | 
-      <div class="a"><%= link_to "Back", "/books" %></div>
 
-      
+      <% end %>
+
+      <div class="a">
+        <%= link_to "Show", book_path(@book.id) %> | <%= link_to "Back", "/books" %>
+      </div>
+
     </div>
   </div>
 </div>

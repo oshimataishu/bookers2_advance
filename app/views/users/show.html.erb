@@ -1,14 +1,16 @@
-<main>
-
-<div class="text-success">
-  <%= flash[:notice] %>
+<div class="container">
+  <div class="row">
+    <div class="text-success">
+       <%= flash[:notice] %>
+    </div>
+  </div>
 </div>
 
 <div class="container px-5 px-sm-0">
   <div class="row">
 
     <div class="col-md-3">
-      <%= render '/books/otherinfo', book: @new_book, user: @user, message: @new_message %>
+      <%= render '/layouts/side_bar', book: @new_book, user: @user, message: @new_message %>
     </div>
 
     <div class="col-md-8 offset-md-1">
@@ -50,6 +52,3 @@
 
   </div>
 </div>
-
-
-</main>
