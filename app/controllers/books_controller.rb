@@ -1,5 +1,19 @@
 class BooksController < ApplicationController
 
+  def show
+    @new_book = Book.new
+    @book = Book.find(params[:id])
+
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
+      ViewCount.create(user_id: current_user.id, book_id: @book.id)
+    end
+    
+    @new_comment = BookComment.new
+    @book_comments = BookComment.all
+    @user = @book.user
+    @current_user = current_user
+  end
+
   def index
     to = Time.current.at_end_of_day
     from = (to - 6.day).at_beginning_of_day
@@ -41,14 +55,6 @@ class BooksController < ApplicationController
     end
   end
 
-  def show
-    @new_book = Book.new
-    @book = Book.find(params[:id])
-    @new_comment = BookComment.new
-    @book_comments = BookComment.all
-    @user = @book.user
-    @current_user = current_user
-  end
 
   def destroy
     @book = Book.find(params[:id])

@@ -39,6 +39,7 @@
             <td id="comments_count">
               <%= render 'layouts/comments_count', book: @book %>
             </td>
+            <td>閲覧数: <%= @book.view_counts.count %></td>
           </tr>
         </tbody>
 

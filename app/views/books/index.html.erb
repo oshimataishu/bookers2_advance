@@ -50,6 +50,7 @@
               <%= render 'layouts/favorite_btn', book: book %>
             </td>
             <td><p>コメント数: <%= book.book_comments.count %></p></td>
+            <td>閲覧数: <%= book.view_counts.count %></td>
           </tr>
           <% end %>
         </tbody>

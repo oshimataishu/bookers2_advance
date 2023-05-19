@@ -39,11 +39,12 @@
             <td><%= book.body %></td>
             <td><%= link_to "Edit", edit_book_path(book.id), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to "Destroy", book_path(book.id), method: :delete, data_confirm: "本当に消しますか？", class: "btn btn-sm btn-danger" %></td>
-            <td>
+            <>
             <td id="favorite_buttons_<%= book.id %>">
               <%= render 'layouts/favorite_btn', book: book %>
             </td>
-            <td><td><p>コメント数: <%= book.book_comments.count %></p></td></td>
+            <td><p>コメント数: <%= book.book_comments.count %></p></td>
+            <td>閲覧数: <%= book.view_counts.count %></td>
           </tr>
           <% end %>
         </tbody>
