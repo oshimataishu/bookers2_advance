@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @current_user = current_user
     @new_book = Book.new
     @books = @user.books
+    @new_message = Message.new
   end
 
   def index

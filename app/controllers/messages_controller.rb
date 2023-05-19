@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
     room_ids = current_user.user_rooms.pluck(:room_id)
     user_rooms = UserRoom.find_by(user_id: @user.id, room_id: room_ids)
 
-    if user_rooms.exists?
+    if user_rooms
       @room = user_rooms.room
     else
       @room = Room.new
