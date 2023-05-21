@@ -173,6 +173,17 @@
           });
         </script>
 
+        <%= form_with url: user_search_path(@user.id), method: :get, local: false do |f| %>
+          <%= f.date_field :created_at %>
+          <%= f.submit "検索", class:"btn btn-primarys" %>
+        <% end %>
+
+        <div id="search_result">
+          <% if @search_book.present? %>
+            <%= render 'layouts/search', search_book: @search_book %>
+          <% end %>
+        </div>
+
     </div>
 
   </div>
