@@ -52,7 +52,7 @@
 
       <h2>投稿数の前日比・前週比</h2>
 
-      <table>
+      <table class="table table-bordered">
         <thead>
           <tr>
             <th>今日の投稿数</th>
@@ -63,15 +63,65 @@
 
         <tbody>
           <tr>
-            <td><%= @user.books.created_today.count %></td>
-            <td><%= @user.books.created_yesterday.count %></td>
+            <td><%= @today_books.count %></td>
+            <td><%= @yesterday_books.count %></td>
             <td>
-            <% if @user.books.created_yesterday.count == 0 %>
+            <% if @yesterday_books.count == 0 %>
               前日の投稿は無し
             <% else %>
-              <%= @the_day_before = @user.books.created_today.count / @user.books.created_yesterday.count.to_f %>
+              <% @the_day_before =   @today_books.count.to_f / @yesterday_books.count.to_f %>
+              <%= (@the_day_before * 100).round %> %
             <% end %>
             </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th>今週の投稿</th>
+          <th>先週の投稿</th>
+          <th>先週比</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @this_week_books.count %></td>
+            <td><%= @last_week_books.count %></td>
+                <% if @last_week_books.count == 0 %>
+                  <td>先週の投稿はなし</td>
+                <% else %>
+                  <td><% @the_week_before = @this_week_books.count / @last_week_books.count  %>
+                  <%= (@the_week_before * 100).round %> %
+                  </td>
+                <% end %>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>７日間分の投稿数</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>6日前</th>
+            <th>5日前</th>
+            <th>4日前</th>
+            <th>3日前</th>
+            <th>2日前</th>
+            <th>1日前</th>
+            <th>今日</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @books.where(created_at: 6.day.ago.all_day).count %></td>
+            <td><%= @books.where(created_at: 5.day.ago.all_day).count %></td>
+            <td><%= @books.where(created_at: 4.day.ago.all_day).count %></td>
+            <td><%= @books.where(created_at: 3.day.ago.all_day).count %></td>
+            <td><%= @books.where(created_at: 2.day.ago.all_day).count %></td>
+            <td><%= @books.where(created_at: 1.day.ago.all_day).count %></td>
+            <td><%= @books.where(created_at: Time.zone.now.all_day).count %></td>
           </tr>
         </tbody>
       </table>

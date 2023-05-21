@@ -4,6 +4,10 @@ class UsersController < ApplicationController
     @current_user = current_user
     @new_book = Book.new
     @books = @user.books
+    @today_books =  @books.created_today
+    @yesterday_books = @books.created_yesterday
+    @this_week_books = @books.created_this_week
+    @last_week_books = @books.created_last_week
   end
 
   def index
