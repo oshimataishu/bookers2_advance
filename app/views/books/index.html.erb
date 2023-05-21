@@ -1,5 +1,11 @@
-<div class="text-success">
-  <%= flash[:notice] %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="text-success" style="text-align: center;">
+        <%= flash[:notice] %>
+      </div>
+    </div>
+  </div>
 </div>
 
 <% if @book.errors.any? %>

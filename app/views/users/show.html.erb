@@ -1,5 +1,11 @@
-<div class="text-success">
-  <%= flash[:notice] %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="text-success" style="text-align: center;">
+        <%= flash[:notice] %>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="container px-5 px-sm-0">
@@ -41,6 +47,32 @@
             <td><p>コメント数: <%= book.book_comments.count %></p></td>
           </tr>
           <% end %>
+        </tbody>
+      </table>
+
+      <h2>投稿数の前日比・前週比</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>今日の投稿数</th>
+            <th>前日の投稿数</th>
+            <th>前日比</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><%= @user.books.created_today.count %></td>
+            <td><%= @user.books.created_yesterday.count %></td>
+            <td>
+            <% if @user.books.created_yesterday.count == 0 %>
+              前日の投稿は無し
+            <% else %>
+              <%= @the_day_before = @user.books.created_today.count / @user.books.created_yesterday.count.to_f %>
+            <% end %>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

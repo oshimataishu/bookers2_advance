@@ -1,4 +1,12 @@
 class BooksController < ApplicationController
+  def show
+    @new_book = Book.new
+    @book = Book.find(params[:id])
+    @new_comment = BookComment.new
+    @book_comments = BookComment.all
+    @user = @book.user
+    @current_user = current_user
+  end
 
   def index
     @current_user = current_user
@@ -39,25 +47,16 @@ class BooksController < ApplicationController
     end
   end
 
-  def show
-    @new_book = Book.new
-    @book = Book.find(params[:id])
-    @new_comment = BookComment.new
-    @book_comments = BookComment.all
-    @user = @book.user
-    @current_user = current_user
-  end
-
   def destroy
     @book = Book.find(params[:id])
     @user = @book.user
-    if @user == current_user
-    else
+    unless @user == current_user
       redirect_to books_path
     end
-    @book.destroy
-    flash[:notice] = "successfully deleted."
-    redirect_to books_path
+    if @book.destroy
+      flash[:notice] = "successfully deleted."
+      redirect_to user_path(current_user)
+    end
   end
 
   private
