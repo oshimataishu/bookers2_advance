@@ -1,0 +1,38 @@
+<div class="text-success">
+  <%= flash[:notice] %>
+</div>
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+
+    <div class="col-md-3">
+      <%= render 'layouts/side_bar', book: @book, user: current_user  %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <div class="d-flex justify-content-between mr-50">
+        <h2>Group Detail</h2>
+        <p>
+        <%= link_to "グループを作成する", new_group_path %> | 
+        <%= link_to "グループ一覧", groups_path %>
+        </p>
+      </div>
+
+
+      <table class="table">
+        <tbody>
+          <tr>
+            <td><%= image_tag @group.get_group_image(50,50) %></td>
+            <td><%= link_to @group.name, group_path(@group.id) %></td>
+            <td><%= @group.introduction %></td>
+            <td>
+              <% if @group.is_owned_by?(current_user) %>
+                <%= link_to 'Edit', edit_group_path(@group.id), class: "group_#{@group.id} btn btn-sm btn-success" %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
