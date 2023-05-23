@@ -13,7 +13,7 @@ class GroupsController < ApplicationController
 
   def show
     @book = Book.new
-    @user = User.find(params[:id])
+    @user = current_user
     @group = Group.find(params[:id])
   end
 
@@ -24,6 +24,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
     if @group.save
+      UserGroup.create(user_id: current_user.id, group_id: @group.id)
       redirect_to groups_path
     else
       render :new
@@ -36,6 +37,18 @@ class GroupsController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def new_mail
+    @group = Group.find(params[:group_id])
+  end
+
+  def send_mail
+    @group = Group.find(params[:group_id])
+    group_users = @group.users
+    @mail_title = params[:mail_title]
+    @mail_content = params[:mail_content]
+    ContactMailer.send_mail(@group, @mail_title, @mail_content, group_users).deliver
   end
 
   private
