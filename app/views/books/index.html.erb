@@ -46,6 +46,23 @@
               <%= render 'layouts/favorite_btn', book: book %>
             </td>
             <td><p>コメント数: <%= book.book_comments.count %></p></td>
+            <td><div id="star_<%= book.id %>"></div></td>
+            <script>
+            $(document).on('turbolinks:load', function() {
+              let elem = document.querySelector('#star_<%= book.id %>');
+              if (elem == null) return;
+
+              elem.innerHTML = "";
+              let opt = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                score: "<%= book.star %>",
+                readOnly: true,
+              };
+              raty(elem, opt);
+            });
+            </script>
           </tr>
           <% end %>
         </tbody>

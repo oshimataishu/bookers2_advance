@@ -63,7 +63,7 @@ gem 'net-smtp'
 
 gem 'font-awesome-rails'
 
-gem 'jquery-rails'
+# gem 'jquery-rails'
 
 gem 'nokogiri'
 
