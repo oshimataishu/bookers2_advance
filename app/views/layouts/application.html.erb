@@ -46,7 +46,6 @@
                   <i class="fas fa-sign-out-alt"></i> logout
                 <% end %>
               </li>
-              <%= render 'tagsearches/tagsearch' %>
               <% else %>
               <li>
                 <a class="nav-link text-light" href="/">
@@ -76,6 +75,9 @@
     </header>
 
     <main class="pt-3">
+    <% if user_signed_in? %>
+      <%= render 'tagsearches/tagsearch' %>
+    <% end %>
       <%= yield %>
     </main>
 
