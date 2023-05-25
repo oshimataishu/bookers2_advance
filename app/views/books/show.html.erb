@@ -1,16 +1,10 @@
-<main>
-
 <div class="text-success">
   <%= flash[:notice] %>
 </div>
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <% if @user.id == current_user.id %>
-        <%= render 'infocreate', book: @new_book %>
-      <% else %>
-      　<%= render 'otherinfo', book: @new_book, user: @user %>
-      <% end %>
+      <%= render 'layouts/side_bar', book: @new_book, user: @user %>
     </div>
 
     <div class="col-md-8 offset-md-1">
@@ -51,5 +45,3 @@
     </div>
   </div>
 </div>
-
-</main>

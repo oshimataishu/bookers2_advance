@@ -1,5 +1,3 @@
-<main>
-
 <div class="text-success">
   <%= flash[:notice] %>
 </div>
@@ -8,11 +6,7 @@
   <div class="row">
 
     <div class="col-md-3">
-      <% if @user.id == current_user.id %>
-        <%= render '/books/infocreate', book: @new_book %>
-      <% else %>
-        <%= render '/books/otherinfo', book: @new_book, user: @user %>
-      <% end %>
+      <%= render 'layouts/side_bar', book: @new_book, user: @user %>
     </div>
 
     <div class="col-md-8 offset-md-1">
@@ -20,10 +14,10 @@
       <table class="table table-hover table-inverse">
         <thead>
           <tr>
-            <td></td>
-            <td>Title</td>
-            <td>Opinion</td>
-            <td colspan="6"></td>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+            <th colspan="6"></th>
           </tr>
         </thead>
 
@@ -41,11 +35,10 @@
             <td><%= book.body %></td>
             <td><%= link_to "Edit", edit_book_path(book.id), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to "Destroy", book_path(book.id), method: :delete, data_confirm: "本当に消しますか？", class: "btn btn-sm btn-danger" %></td>
-            <td>
             <td id="favorite_buttons_<%= book.id %>">
               <%= render 'layouts/favorite_btn', book: book %>
             </td>
-            <td><td><p>コメント数: <%= book.book_comments.count %></p></td></td>
+            <td><p>コメント数: <%= book.book_comments.count %></p></td>
           </tr>
           <% end %>
         </tbody>
@@ -54,6 +47,3 @@
 
   </div>
 </div>
-
-
-</main>

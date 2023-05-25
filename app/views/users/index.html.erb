@@ -7,7 +7,7 @@
   <div class="row">
 
     <div class="col-md-3">
-      <%= render '/books/infocreate', book: @book  %>
+      <%= render 'layouts/side_bar', book: @book, user: current_user  %>
     </div>
 
     <div class="col-md-8 offset-md-1">
