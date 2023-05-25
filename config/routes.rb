@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'homes#top'
+  get '/home/about' => 'homes#about', as: "about"
   devise_for :users
 
   resources :books, only: [:show, :index, :create, :edit, :update, :destroy] do
@@ -12,7 +13,8 @@ Rails.application.routes.draw do
     get 'followers' => 'relationships#followers', as: 'followers'
   end
 
-  get '/home/about' => 'homes#about', as: "about"
+  get 'tagsearches/search', to: 'tagsearches#search'
+  post 'tagsearches/search'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

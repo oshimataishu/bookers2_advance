@@ -35,6 +35,11 @@
               <%= render 'layouts/comments_count', book: @book %>
             </td>
             <td><div id="star_<%= @book.id %>"></div></td>
+            <td>
+          　　<% if @book.category.present? %>
+          　　　　<%=link_to@book.category,tagsearches_search_path(content:@book.category)%>
+          　　<% end %>
+            </td>
             <script>
               $(document).on('turbolinks:load', function() {
                 let elem = document.querySelector('#star_<%= @book.id %>');
